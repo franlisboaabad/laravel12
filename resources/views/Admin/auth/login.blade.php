@@ -15,16 +15,23 @@
         <h4 class="mb-1">Welcome! 👋</h4>
         <p class="mb-6">Please sign-in to your account</p>
 
-        <form id="formAuthentication" class="mb-6" action="{{ route('dashboard') }}" method="GET">
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">{{ $errors->first() }}</div>
+        @endif
+
+        <form id="formAuthentication" class="mb-6" action="{{ route('login') }}" method="POST">
+            @csrf
             <div class="mb-6">
                 <label for="email" class="form-label">Email</label>
                 <input
-                    type="text"
-                    class="form-control"
+                    type="email"
+                    class="form-control @error('email') is-invalid @enderror"
                     id="email"
                     name="email"
+                    value="{{ old('email') }}"
                     placeholder="Enter your email"
                     autofocus
+                    required
                 />
             </div>
             <div class="mb-6 form-password-toggle">
@@ -33,10 +40,11 @@
                     <input
                         type="password"
                         id="password"
-                        class="form-control"
+                        class="form-control @error('password') is-invalid @enderror"
                         name="password"
                         placeholder="············"
                         aria-describedby="password"
+                        required
                     />
                     <span class="input-group-text cursor-pointer"><i class="icon-base bx bx-hide"></i></span>
                 </div>
@@ -44,7 +52,7 @@
             <div class="mb-8">
                 <div class="d-flex justify-content-between">
                     <div class="form-check mb-0">
-                        <input class="form-check-input" type="checkbox" id="remember-me" />
+                        <input class="form-check-input" type="checkbox" id="remember-me" name="remember" value="1" />
                         <label class="form-check-label" for="remember-me">Remember Me</label>
                     </div>
                     <a href="javascript:void(0);">

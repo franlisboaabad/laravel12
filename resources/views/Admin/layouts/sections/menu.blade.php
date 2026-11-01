@@ -21,15 +21,5 @@
             </a>
         </li>
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Pages</span>
-        </li>
-
-        <li class="menu-item {{ request()->routeIs('login') ? 'active' : '' }}">
-            <a href="{{ route('login') }}" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-log-in"></i>
-                <div class="text-truncate">Login</div>
-            </a>
-        </li>
     </ul>
 </aside>
